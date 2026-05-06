@@ -1,0 +1,49 @@
+python client.py                                                                              
+Agent created (id: MyAgent:1, name: MyAgent, version: 1)
+Created conversation (id: conv_cefa4307cc28adb000Shj9y7JDZyqEZugb0f3QFG2oVyNuXiRA)
+Final input:
+[{'type': 'mcp_approval_response', 'approve': True, 'approval_request_id': 'mcpr_cefa4307cc28adb00069fb0ba1eb9881908c59015bd883b07b'}]
+
+Agent response: To create an Azure Container App with a managed identity using Azure CLI, you have two main options: system-assigned or user-assigned managed identities.
+
+### 1. **System-assigned Managed Identity**
+You can add a system-assigned managed identity during or after app creation:
+
+```azurecli
+az containerapp identity assign \
+    --name <container-app-name> \
+    --resource-group <resource-group> \
+    --system-assigned
+```
+
+### 2. **User-assigned Managed Identity**
+First, get or create your managed identity, then assign it:
+
+```azurecli
+# Get the resource ID of your user-assigned identity
+UAMI_RESOURCE_ID=$(az identity show --name <managed-identity-name> --resource-group <resource-group> --query id -o tsv)
+
+# Create your Container App with the user-assigned identity
+az containerapp create \
+  --name <container-app-name> \
+  --resource-group <resource-group> \
+  --environment <containerapps-environment> \
+  --image <your-image> \
+  --assign-identity $UAMI_RESOURCE_ID
+```
+
+Or to assign after creation:
+
+```azurecli
+az containerapp identity assign \
+    --name <container-app-name> \
+    --resource-group <resource-group> \
+    --user-assigned <managed-identity-resource-id>
+```
+
+### References
+- [Assign system identity](https://learn.microsoft.com/azure/container-apps/azure-pipelines#configuration)
+- [Assign user identity](https://learn.microsoft.com/entra/msidweb/authentication/certificateless#deploy-to-azure-compute-services)
+
+Let me know if you want a full example including environment setup and identity creation!
+Agent deleted

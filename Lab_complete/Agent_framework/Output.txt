@@ -1,0 +1,29 @@
+Here is the expenses data in your file:
+
+date,description,amount
+07-Mar-2025,taxi,24.00
+07-Mar-2025,dinner,65.50
+07-Mar-2025,hotel,125.90
+
+
+What would you like me to do with it?
+
+process the expenses data
+
+To: expenses@contoso.com
+Subject: Expense Claim
+Expense Claim Submission:
+
+Itemized Expenses:
+1. Date: 07-Mar-2025 | Description: Taxi | Amount: $24.00
+2. Date: 07-Mar-2025 | Description: Dinner | Amount: $65.50
+3. Date: 07-Mar-2025 | Description: Hotel | Amount: $125.90
+
+Total Amount: $215.40 
+
+
+# Agent:
+Your expense claim has been submitted to expenses@contoso.com with the itemized expenses and the total amount. If you need a copy or details, let me know!
+(labenv) PS /home/user1-61761972/ai-agents/Labfiles/04-agent-framework/python> 
+
+complete
